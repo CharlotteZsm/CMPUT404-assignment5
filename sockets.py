@@ -112,6 +112,8 @@ def read_ws(ws, client):
             print("WS RECV: %s" % msg)
             if (msg is not None):
                 packet = json.loads(msg)
+                for entity in packet:
+                    myWorld.set(entity, packet[entity])
                 send_all_json(packet)
             else:
                 break
